@@ -3,16 +3,22 @@
 
 <head>
   <meta charset="utf-8" />
-  <title>ActivityPub Trust & Safety Taskforce Report</title>
+  <title>ActivityPub Trust and Safety</title>
   <script src="https://www.w3.org/Tools/respec/respec-w3c" defer class="remove"></script>
   <script class="remove">
     // All config options at https://respec.org/docs/
     var respecConfig = {
       editors: [{ name: "Emelia Smith", url: "https://hachyderm.io/@thisismissem", w3cid: "140818" }],
+      authors: [
+        {
+          name: "a",
+          url: "https://trwnh.com/",
+          note: "sections on flexible control, existing activities"
+        }
+      ],
       github: "swicg/activitypub-trust-and-safety",
-      // We intend this to be the final report, so would be a community group draft:
+      noRecTrack: true,
       specStatus: "CG-DRAFT",
-      isPreview: true,
       shortName: "ap-trust-and-safety",
       latestVersion: "https://swicg.github.io/activitypub-trust-and-safety/",
       edDraftURI: false,
@@ -29,29 +35,158 @@
       ],
       xref: ["activitystreams-vocabulary", "activitystreams-core", "activitypub"],
       group: "socialcg",
+      localBiblio: {
+        scalingtrust: {
+          title: "Scaling Trust on the Web",
+          href: "https://www.atlanticcouncil.org/in-depth-research-reports/report/scaling-trust/",
+          publisher: "Atlantic Council",
+        }
+      },
+      format: "markdown"
     };
   </script>
-  <style>
-    table td,
-    table td * {
-      vertical-align: top;
-    }
-  </style>
 </head>
 
 <body>
-  <section id="abstract">
-    <p>
-      This report documents recommendations for ActivityPub and Activity Streams 2.0 to improve Trust and Safety on the
-      Fediverse.
-    </p>
-  </section>
-  <section id="sotd"></section>
-  <section class="informative">
-    <h2>Introduction</h2>
-    <p>This report is still in the process of being written. Please see the <a
-        href="https://github.com/swicg/activitypub-trust-and-safety/issues">open issues</a> on GitHub instead.</p>
-  </section>
+<section id="abstract">
+
+This is a living document that provides an overview of trust and safety considerations and recommendations for ActivityPub and Activity Streams 2.0. We've structured this document to outline why we need to think about trust and safety, the current trust and safety features in ActivityPub, the current areas of work we're undertaking to improve trust and safety in ActivityPub, and advice for people building ActivityPub-enabled software.
+
+</section> <!-- #abstract -->
+
+<section id="sotd"></section> <!-- #sotd -->
+
+<section id="introduction">
+<h2>Introduction</h2>
+
+<section id="why">
+<h3>Why does trust and safety matter for ActivityPub?</h3>
+
+ActivityPub is an inherently social protocol, and as such, it must adequately address trust and safety for the success of the protocol and the platforms that are built with it.
+
+As an implementer of an ActivityPub-enabled social platform, if you were to only read the ActivityPub, Activity Streams 2.0 Core, and Activity Vocabulary specifications, you would not have enough knowledge to ensure trust and safety for your service. This report provides additional information to ensure you can reach a baseline of trust and safety in your ActivityPub-enabled software.
+
+As noted by the Atlantic Council in their [[[scalingtrust]]] paper:
+
+<blockquote cite="https://www.atlanticcouncil.org/in-depth-research-reports/report/scaling-trust/">
+  <p>Risk and harm are set to scale exponentially and may strangle the opportunities generational technologies create. We have a narrow window and opportunity to leverage decades of hard won lessons and invest in reinforcing human dignity and societal resilience globally.</p>
+  <p>Atlantic Council — [[[scalingtrust]]]</p>
+</blockquote>
+
+This applies directly to ActivityPub software: we are in a pivotal moment of early growth and adoption, where we can leverage decades of learning on trust and safety for online social platforms to ensure that the protocol meets the challenges that will face us as adoption grows.
+
+We regularly face issues with spam and abuse, and we have seen services taken down by online harms related to user generated content. We have already seen issues with moderation reports for harmful behaviour being dropped due to incompatibilities between various ActivityPub software. These issues result in people not trusting platforms that are powered by ActivityPub.
+
+Trust and safety isn't just about the needs of specific groups that use platforms, but about ensuring all those that use platforms built on ActivityPub have experiences that align with their expectations to be free from harassment, abuse, and inauthentic activity.
+
+</section> <!-- #why -->
+
+</section> <!-- #introduction -->
+
+
+<section id="tf">
+<h2>ActivityPub Trust and Safety Task Force</h3>
+
+The task force brings together a variety of contributors from varying projects, platforms, and organisations, along with experts in trust and safety, researchers, and moderators. We work to reach consensus on the documents that we produce through regular meetings that are open for anyone to join.
+
+Our [scope of work](https://github.com/swicg/activitypub-trust-and-safety?tab=readme-ov-file#scope-of-work) focuses on improving core protocol features that already exist and are in use, before working on new features.
+
+</section> <!-- #tf -->
+
+
+<section id="workstreams">
+<h2>Workstreams</h2>
+
+The work of the task force is organized into separate workstreams, focused around specific goals such as:
+
+- Producing a document describing the current state of the ActivityPub ecosystem regarding a certain feature or aspect
+- Developing a common profile of functionality that can be implemented in ActivityPub-enabled software
+
+<section id="user-features">
+<h3>User features</h3>
+
+Describes the Block activity as specified in ActivityPub, and mentions the Ignore activity as not included in ActivityPub. Recommends giving users more flexible control over their own experiences with filters (instead of or in addition to mutes) and policies (instead of or in addition to blocks). Also mentions the Flag activity as not included in ActivityPub, and links out to other relevant reports regarding defining the Flag activity.
+
+Status: Draft. See the <a href="./workstreams/user-features/">document</a> for more information.
+
+</section> <!-- #user-features -->
+
+
+<section id="sensitive">
+<h3>Sensitive content</h3>
+
+Describes the widely-used as:sensitive property and how it is used. Develops a processing model based on prior implementation experience for content warnings and hidden link previews.
+
+Status: In PR https://github.com/swicg/activitypub-trust-and-safety/pull/122
+
+</section> <!-- #sensitive -->
+
+
+<section id="reports">
+<h3>Reporting problematic content</h3>
+
+Define a common profile for the Flag activity to represent a "report". Explores UX for users and moderators regarding reports.
+
+Status: Stub document created. See the <a href="./workstreams/reports/">document</a> for more information.
+
+</section> <!-- #reports -->
+
+
+<section id="addressing">
+<h3>Addressing considerations</h3>
+
+- how content is distributed, and how it can leak to unintended audiences
+  - through the use of embedding of foreign objects (e.g., announce by reference vs announce by embedding)
+  - sending Flag activities to moderator.inbox vs sending them to attributedTo.inbox
+
+Status: Stub document created. See the <a href="./workstreams/addressing/">document</a> for more information.
+
+</section> <!-- #addressing -->
+
+
+<section id="moderators">
+<h3>Discovering moderators</h3>
+
+- no broad agreement yet on how, but you should be able to discover the moderators for a given object in order to send moderation-related activities to moderators
+
+Status: Stub document created. See the <a href="./workstreams/moderators/">document</a> for more information.
+
+</section> <!-- #moderators -->
+
+
+</section> <!-- #workstreams -->
+
+<section id="future">
+<h2>Future areas</h2>
+
+TODO, some ideas:
+
+- Ensuring users can delete media
+
+### Open registration
+
+- Open registration and the moderation responsibility that it entails
+  - Explain that whilst open registration can be desirable, it comes with the responsibility to be able to moderate around the clock, and also should be implemented such that if a server becomes unmaintained, it automatically closes, as to prevent that server from being used as a vector for abuse and spam
+- Automatically closing open registration upon moderator inactivity
+
+### Federation management
+
+- being able to block domains / actors at a service level
+- Explain the different approaches to federation management: open federation, consent-based federation, and closed federation. Explain how the implementation of federation management can directly impact your users and their experiences.
+
+### Anti-spam
+
+The ActivityPub specification contains the following language regarding spam:
+
+<blockquote cite="https://www.w3.org/TR/activitypub/#security-spam">
+<p>Spam is a problem in any network, perhaps especially so in federated networks. While no specific mechanism for combating spam is provided in ActivityPub, it is recommended that servers filter incoming content both by local untrusted users and any remote users through some sort of spam filter. </p>
+<p>[[[ActivityPub]]], B.6 Spam</p>
+</blockquote>
+
+TODO: expand on why this isn't enough
+
+</section>
+
 </body>
 
 </html>
