@@ -12,8 +12,8 @@
       authors: [
         {
           name: "a",
-          url: "https://trwnh.com/",
-          note: "sections on flexible control, existing activities"
+          url: "https://trwnh.com/#a",
+          note: "sections on workstreams and outputs"
         }
       ],
       github: "swicg/activitypub-trust-and-safety",
@@ -74,29 +74,42 @@ Trust and safety isn't just about the needs of specific groups that use platform
 
 
 <section id="tf">
-<h2>ActivityPub Trust and Safety Task Force</h3>
+<h2>ActivityPub Trust and Safety Task Force</h2>
 
 The task force brings together a variety of contributors from varying projects, platforms, and organisations, along with experts in trust and safety, researchers, and moderators. We work to reach consensus on the documents that we produce through regular meetings that are open for anyone to join.
 
 Our [scope of work](https://github.com/swicg/activitypub-trust-and-safety?tab=readme-ov-file#scope-of-work) focuses on improving core protocol features that already exist and are in use, before working on new features.
 
-</section> <!-- #tf -->
+### Workstreams
 
+The work of the task force is organized into separate workstreams, focused around user stories and problem areas regarding trust and safety challenges in the ActivityPub ecosystem.
 
-<section id="workstreams">
-<h2>Workstreams</h2>
-
-The work of the task force is organized into separate workstreams, focused around specific goals such as:
+Workstreams result in fulfilling specific goals such as:
 
 - Producing a document describing the current state of the ActivityPub ecosystem regarding a certain feature or aspect
 - Developing a common profile of functionality that can be implemented in ActivityPub-enabled software
 
-<section id="user-features">
-<h3>User features</h3>
+The current workstreams open right now are:
 
-Describes the Block activity as specified in ActivityPub, and mentions the Ignore activity as not included in ActivityPub. Recommends giving users more flexible control over their own experiences with filters (instead of or in addition to mutes) and policies (instead of or in addition to blocks). Also mentions the Flag activity as not included in ActivityPub, and links out to other relevant reports regarding defining the Flag activity.
+- <p class="issue" data-number="41"><span></span></p>
+- <p class="issue" data-number="38"><span></span></p>
 
-Status: Draft. See the <a href="./user-features/">document</a> for more information.
+</section> <!-- #tf -->
+
+
+<section id="output">
+<h2>Output documents</h2>
+
+<section id="activities">
+<h3>Activities related to trust and safety</h3>
+
+<a href="./activities/">Draft CG Report</a>
+
+- Describes the Block activity as specified in ActivityPub.
+- Mentions the Ignore activity as not included in ActivityPub.
+- Recommends giving users more flexible control over their own experiences with filters (instead of or in addition to mutes) and policies (instead of or in addition to blocks).
+- Also mentions the Flag activity as not included in ActivityPub.
+  - Refers to <a href="#reports"></a> and <a href="#addressing"></a> for further information.
 
 </section> <!-- #user-features -->
 
@@ -104,9 +117,11 @@ Status: Draft. See the <a href="./user-features/">document</a> for more informat
 <section id="sensitive">
 <h3>Sensitive content</h3>
 
-Describes the widely-used as:sensitive property and how it is used. Develops a processing model based on prior implementation experience for content warnings and hidden link previews.
+<a href="./sensitive/">Draft CG Report</a>
 
-Status: In PR https://github.com/swicg/activitypub-trust-and-safety/pull/122
+- Describes the widely-used `sensitive` (as:sensitive) property and how it is used.
+- Develops a processing model based on prior implementation experience for content warnings and hidden link previews, when the aforementioned property has a value of `true`.
+- Includes criticisms of the existing usage.
 
 </section> <!-- #sensitive -->
 
@@ -114,9 +129,10 @@ Status: In PR https://github.com/swicg/activitypub-trust-and-safety/pull/122
 <section id="reports">
 <h3>Reporting problematic content</h3>
 
-Define a common profile for the Flag activity to represent a "report". Explores UX for users and moderators regarding reports.
+<a href="./reports/">Draft CG Report</a>
 
-Status: Stub document created. See the <a href="./reports/">document</a> for more information.
+- Define a common profile for the Flag activity to represent a "report".
+- Explores UX for users and moderators regarding reports.
 
 </section> <!-- #reports -->
 
@@ -124,11 +140,10 @@ Status: Stub document created. See the <a href="./reports/">document</a> for mor
 <section id="addressing">
 <h3>Addressing considerations</h3>
 
-- how content is distributed, and how it can leak to unintended audiences
-  - through the use of embedding of foreign objects (e.g., announce by reference vs announce by embedding)
-  - sending Flag activities to moderator.inbox vs sending them to attributedTo.inbox
+<a href="./addressing/">Draft CG Report</a>
 
-Status: Stub document created. See the <a href="./addressing/">document</a> for more information.
+- Metadata leakage when embedded information is included in activities delivered to wider audiences, such as Announce activities which include embedded information vs Announce activities which include only an id reference
+- Inappropriate audience targeting, such as sending moderation-related activities to the author of the problematic content vs sending them to dedicated moderators
 
 </section> <!-- #addressing -->
 
@@ -136,14 +151,14 @@ Status: Stub document created. See the <a href="./addressing/">document</a> for 
 <section id="moderators">
 <h3>Discovering moderators</h3>
 
-- no broad agreement yet on how, but you should be able to discover the moderators for a given object in order to send moderation-related activities to moderators
+<a href="./moderators/">Draft CG Report</a>
 
-Status: Stub document created. See the <a href="./moderators/">document</a> for more information.
+- no broad agreement yet on how, but you should be able to discover the moderators for a given object in order to send moderation-related activities to moderators
 
 </section> <!-- #moderators -->
 
 
-</section> <!-- #workstreams -->
+</section> <!-- #output -->
 
 <section id="future">
 <h2>Future areas</h2>
