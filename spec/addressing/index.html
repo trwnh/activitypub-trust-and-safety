@@ -23,7 +23,18 @@
       edDraftURI: false,
       xref: ["activitystreams-vocabulary", "activitystreams-core", "activitypub"],
       group: "socialcg",
-      format: "markdown"
+      format: "markdown",
+      otherLinks: [
+        {
+          key: "Related Documents",
+          data: [
+            {
+              value: "ActivityPub Trust and Safety Overview",
+              href: "../",
+            },
+          ],
+        },
+      ],
     };
   </script>
 </head>
@@ -44,11 +55,15 @@ This document explores appropriate audiences for activities and when different c
 
 TODO: write this report
 
+## Metadata leakage
 
-- how content is distributed, and how it can leak to unintended audiences
-  - through the use of embedding of foreign objects (e.g., announce by reference vs announce by embedding)
-  - sending Flag activities to moderator.inbox vs sending them to attributedTo.inbox
+through the use of embedding of foreign objects (e.g., announce by reference vs announce by embedding)
 
+##
+
+sending Flag activities to moderator.inbox vs sending them to attributedTo.inbox
+
+depends on discovering the moderator -- see <a href="../moderators/">Discovering the moderation actor</a> for more information.
 
 </body>
 </html>

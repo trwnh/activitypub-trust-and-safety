@@ -23,7 +23,18 @@
       edDraftURI: false,
       xref: ["activitystreams-vocabulary", "activitystreams-core", "activitypub"],
       group: "socialcg",
-      format: "markdown"
+      format: "markdown",
+      otherLinks: [
+        {
+          key: "Related Documents",
+          data: [
+            {
+              value: "ActivityPub Trust and Safety Overview",
+              href: "../",
+            },
+          ],
+        },
+      ],
     };
   </script>
 </head>
@@ -117,7 +128,7 @@ At present, there is no formal definition of how to process Flag activities, whi
 <section id="flag-format">
 <h3>How to author Flag activities</h3>
 
-One goal of the Trust & Safety Task Force is to define a common profile for Flag activities. For more information, see our document on <a href="../reports">Reporting problematic content on ActivityPub-enabled hosts</a>.
+One goal of the Trust & Safety Task Force is to define a common profile for Flag activities. For more information, see our document on <a href="../reports/">Reporting problematic content on ActivityPub-enabled hosts</a>.
 
 </section> <!-- #flag-format -->
 
@@ -125,7 +136,7 @@ One goal of the Trust & Safety Task Force is to define a common profile for Flag
 <section id="flag-addressing">
 <h3>Where to send Flag activities</h3>
 
-Flag activities should be sent to an appropriate audience. See our document on <a href="moderation-addressing">addressing for moderation-related activities</a>.
+Flag activities should be sent to an appropriate audience. See our document on <a href="../addressing/">addressing</a>.
 
 </section>
 
