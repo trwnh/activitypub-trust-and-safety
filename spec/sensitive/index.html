@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <title>Handling sensitive content</title>
+  <script src="https://www.w3.org/Tools/respec/respec-w3c" defer class="remove"></script>
+  <script class="remove">
+    // All config options at https://respec.org/docs/
+    var respecConfig = {
+      editors: [{ name: "Emelia Smith", url: "https://hachyderm.io/@thisismissem", w3cid: "140818" }],
+      authors: [
+        {
+          name: "a",
+          url: "https://trwnh.com/#a"
+        }
+      ],
+      github: "swicg/activitypub-trust-and-safety",
+      noRecTrack: true,
+      specStatus: "CG-DRAFT",
+      shortName: "ap-trust-and-safety/sensitive",
+      latestVersion: "https://swicg.github.io/activitypub-trust-and-safety/sensitive/",
+      edDraftURI: false,
+      xref: ["activitystreams-vocabulary", "activitystreams-core", "activitypub"],
+      group: "socialcg",
+      format: "markdown",
+      otherLinks: [
+        {
+          key: "Related Documents",
+          data: [
+            {
+              value: "ActivityPub Trust and Safety Overview",
+              href: "../",
+            },
+          ],
+        },
+      ],
+    };
+  </script>
+</head>
+
+<body>
+<section id="abstract">
+
+Publishers may wish to mark certain content as "sensitive". This can be because the publisher recognizes the content as benefiting from a discretionary warning, or as a courtesy to their audience and their sensitivities regarding certain topics that may be triggering if viewed without a warning. Marking the content as "sensitive" typically hides the content behind a content warning, blurs or collapses media attachments, and requires click-through consent before viewing the content.
+
+This approach currently lacks a formally defined processing model for specifying which properties are considered "sensitive" or "content". This document aims to define such a processing model and provide guidance on how sensitive content is handled by publishers and consumers of Activity Streams 2.0 documents, particularly in the fediverse.
+
+</section> <!-- #abstract -->
+
+
+<section id="sotd">
+
+
+For more details on the status of this document, see the following GitHub issues:
+
+- <p class="issue" data-number="118"></p>
+- <p class="issue" data-number="117"></p>
+
+</section> <!-- #sotd -->
+
+
+<section id="conformance"></section> <!-- #conformance -->
+
+
+TODO: rebase PR https://github.com/swicg/activitypub-trust-and-safety/pull/122/ after the reorganization is merged into main branch
+
+</body>
+</html>

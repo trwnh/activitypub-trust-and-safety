@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <title>Addressing considerations for activities and audiences</title>
+  <script src="https://www.w3.org/Tools/respec/respec-w3c" defer class="remove"></script>
+  <script class="remove">
+    // All config options at https://respec.org/docs/
+    var respecConfig = {
+      editors: [{ name: "Emelia Smith", url: "https://hachyderm.io/@thisismissem", w3cid: "140818" }],
+      authors: [
+        {
+          name: "a",
+          url: "https://trwnh.com/#a"
+        }
+      ],
+      github: "swicg/activitypub-trust-and-safety",
+      noRecTrack: true,
+      specStatus: "CG-DRAFT",
+      shortName: "ap-trust-and-safety/flag",
+      latestVersion: "https://swicg.github.io/activitypub-trust-and-safety/addressing/",
+      edDraftURI: false,
+      xref: ["activitystreams-vocabulary", "activitystreams-core", "activitypub"],
+      group: "socialcg",
+      format: "markdown",
+      otherLinks: [
+        {
+          key: "Related Documents",
+          data: [
+            {
+              value: "ActivityPub Trust and Safety Overview",
+              href: "../",
+            },
+          ],
+        },
+      ],
+    };
+  </script>
+</head>
+
+<body>
+<section id="abstract">
+
+This document explores appropriate audiences for activities and when different classes of audiences might be addressed.
+
+</section> <!-- #abstract -->
+
+
+<section id="sotd"></section> <!-- #sotd -->
+
+
+<section id="conformance"></section> <!-- #conformance -->
+
+
+TODO: write this report
+
+## Metadata leakage
+
+through the use of embedding of foreign objects (e.g., announce by reference vs announce by embedding)
+
+## Wrong audience
+
+sending Flag activities to moderator.inbox vs sending them to attributedTo.inbox
+
+depends on discovering the moderator -- see <a href="../moderators/">Discovering the moderation actor</a> for more information.
+
+## Non-universal assumptions regarding as:Public addressing
+
+### consent
+
+addressing as:Public does not mean the author consents to every possible use of their data; it just means the data is visible to everyone
+
+### unlisted
+
+Mastodon uses to:Public and cc:Public differently, for their concept of "unlisted" posts but this is not an interpretation that all software agrees to
+
+</body>
+</html>

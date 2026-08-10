@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <title>Activities related to trust and safety</title>
+  <script src="https://www.w3.org/Tools/respec/respec-w3c" defer class="remove"></script>
+  <script class="remove">
+    // All config options at https://respec.org/docs/
+    var respecConfig = {
+      editors: [{ name: "Emelia Smith", url: "https://hachyderm.io/@thisismissem", w3cid: "140818" }],
+      authors: [
+        {
+          name: "a",
+          url: "https://trwnh.com/#a"
+        }
+      ],
+      github: "swicg/activitypub-trust-and-safety",
+      noRecTrack: true,
+      specStatus: "CG-DRAFT",
+      shortName: "ap-trust-and-safety/activities",
+      latestVersion: "https://swicg.github.io/activitypub-trust-and-safety/activities/",
+      edDraftURI: false,
+      xref: ["activitystreams-vocabulary", "activitystreams-core", "activitypub"],
+      group: "socialcg",
+      format: "markdown",
+      otherLinks: [
+        {
+          key: "Related Documents",
+          data: [
+            {
+              value: "ActivityPub Trust and Safety Overview",
+              href: "../",
+            },
+          ],
+        },
+      ],
+    };
+  </script>
+</head>
+
+<body>
+<section id="abstract">
+
+When building software that directly serves people or allows them to use a service, it is important to give people control over their own experience.
+
+</section> <!-- #abstract -->
+
+<section id="sotd"></section> <!-- #sotd -->
+
+<section id="block">
+<h2>Block activities</h2>
+
+The [[[activitystreams-vocabulary]]] defines the Block activity, which can be useful for people to control what they see and who can interact with them.
+
+[[[ActivityPub]]] defines side effects for the Block activity when POSTed to the outbox, recommending that the server prevents the blocked actor from interacting with any object posted by the blocking actor. It also recommends that Block activities are not delivered to their object.
+
+<p class="note">In practice, despite the normative recommendation for outbox servers to not deliver Block activities to their object, existing softwares currently deliver Block activities to their object. Philosophically, this is done under the assumption that the remote inbox is being managed by a server instead of being visible to any users directly; the motivation to deliver Block activities is so that trustworthy servers can enforce the Block remotely and extend the definition of "interact with" to include "viewing". However, it would be more appropriate to deliver such an activity to a different service-level actor responsible for enforcing blocks. Discovering such an actor is out of scope of this report.</p>
+
+</section> <!-- #block -->
+
+<section id="ignore">
+<h2>Ignore activities</h2>
+
+The Ignore activity is defined by [[[activitystreams-vocabulary]]], but not defined to have any side effects in [[[ActivityPub]]].
+
+</section> <!-- #ignore -->
+
+<section id="flag">
+<h2>Flag activities</h2>
+
+The [[[activitystreams-vocabulary]]] defines the Flag activity type, which can be useful for bringing attention to problematic content.
+
+At present, there is no formal definition of how to process Flag activities, which properties one can expect or require to be included, or where to send these activities. Existing implementations have differing requirements for Flag activities, and they generally send these activities to the inbox of the attributed actor. Philosophically, this is done under the assumption that the remote inbox is being managed by a server instead of being visible to any users directly; in cases where this is not true, a report may end up being delivered as an activity directly visible to the user being reported.
+
+One goal of the Trust & Safety Task Force is to define a common profile for Flag activities. For more information, see our document on <a href="../reports/">Reporting problematic content on ActivityPub-enabled hosts</a>.
+
+</section> <!-- #flag-addressing -->
+
+</section> <!-- #flag -->
+
+<section id="flexible-control">
+<h3>Giving users more flexible control than just Block or Ignore</h3>
+
+When implementing ActivityPub, it can make sense to implement support for [[[#block]]] and [[[#ignore]]]. However, relying solely on Block and Ignore activities does not provide people with adequate control of their experiences. It is better to go beyond this limited functionality and allow people to more fully control what they see and how others can interact with them, outside of simple binary actions.
+
+
+<section id="policies">
+<h4>Policies</h4>
+
+The functionality of a Block applies to all interactions, but your users may reasonably want to only limit <em>some</em> interactions, or they may want to set conditions on certain usage of their content. This can be done with policies.
+
+At this time, there is no broad consensus on a specific mechanism for signaling these policies, but some vocabularies are being developed or could be applied for this purpose. For example, [[[ODRL-Vocab]]] allows describing policies that explicitly grant permission for certain actions, although there is no enforcement attached — it is up to consumers to respect these policies. For social proof, publishers can provide acknowledgement of other people's resources, although there is no broad consensus here either. 
+
+It is possible to respect some authorities by fetching authoritative canonical representations of certain collections defined by [[[ActivityPub]]]:
+
+- `outbox`
+- `likes`
+- `shares`
+- `followers`
+- `following`
+- `liked`
+
+Furthermore, some other properties defined by the [[[activitystreams-vocabulary]]] are commonly used in social situations, with values that can be Collections (or might have canonical collections associated with them):
+
+- `replies`
+- `context`
+
+</section> <!-- #policies -->
+
+
+<section id="filters">
+<h4>Filters</h4>
+
+The functionality of an Ignore activity, commonly called a "mute" or sometimes "hide", is better served by a filter system. For compatibility mapping, ignoring or muting a user can be thought of as a filter whose context is scoped to the author of a post being that user: when an Object is `attributedTo` a certain actor, or when an Activity has a certain `actor`, it should not be shown to the user.
+
+Other filter contexts are possible. The following properties are particularly useful for filtering:
+
+- When a particular `actor` or `attributedTo` is present
+- When natural language properties like `content`, `summary`, or `name` contain a certain substring. The substring can be a simple match, or it might take word boundaries into consideration. Regular expressions can be used for even more control, and programmable filter functions or modules provide the highest level of control.
+- When the object is part of a particular `context`, such as threaded conversations
+- When a particular `tag` is present
+- When a particular `location` is present
+- When the `published` datetime falls within a certain range
+- When the `id` (or some Link's `href`) contains a particular HTTP host
+
+<p class="note">Recursive filters are also possible, such as filtering when the object is `inReplyTo` some other object whose `attributedTo` or `actor` has a particular value to be filtered; however, be wary of performance concerns when recursively fetching linked resources. Your software can avoid this problem by setting a maximum recursion limit, which might be 1.</p>
+
+</section> <!-- #filters -->
+
+
+</section> <!-- #flexible-control -->
+
+## TODO
+
+include AP appendices in scope of this report?
+
+</body>
+</html>

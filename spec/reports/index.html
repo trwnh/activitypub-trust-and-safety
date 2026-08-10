@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <title>Reporting problematic content</title>
+  <script src="https://www.w3.org/Tools/respec/respec-w3c" defer class="remove"></script>
+  <script class="remove">
+    // All config options at https://respec.org/docs/
+    var respecConfig = {
+      editors: [{ name: "Emelia Smith", url: "https://hachyderm.io/@thisismissem", w3cid: "140818" }],
+      authors: [
+        {
+          name: "a",
+          url: "https://trwnh.com/#a"
+        }
+      ],
+      github: "swicg/activitypub-trust-and-safety",
+      noRecTrack: true,
+      specStatus: "CG-DRAFT",
+      shortName: "ap-trust-and-safety/reports",
+      latestVersion: "https://swicg.github.io/activitypub-trust-and-safety/reports/",
+      edDraftURI: false,
+      xref: ["activitystreams-vocabulary", "activitystreams-core", "activitypub"],
+      group: "socialcg",
+      format: "markdown",
+      otherLinks: [
+        {
+          key: "Related Documents",
+          data: [
+            {
+              value: "ActivityPub Trust and Safety Overview",
+              href: "../",
+            },
+          ],
+        },
+      ],
+    };
+  </script>
+</head>
+
+<body>
+<section id="abstract">
+
+This document describes the Flag activity and how it has been historically used to represent reports in ActivityPub-enabled software. The document also defines a common profile and processing model for Flag activities. It also covers UX considerations for the reporting flow -- TODO: consider split into separate workstream for "report handling" about moderator UX vs user UX? or UX vs Flag profile?
+
+</section> <!-- #abstract -->
+
+
+<section id="sotd"></section> <!-- #sotd -->
+
+
+<section id="conformance"></section> <!-- #conformance -->
+
+
+TODO: write this report
+
+- General report management
+- Show the classification clearly, so the moderator is aware of the type of content they are about to review
+- Grayscale all media until the moderator clicks to toggle greyscale (allow toggle state back to greyscale)
+- Blur all media until the moderator hovers to view greyscale version (re-blur when hover not detected or mouseleave event)
+- Mute all audio until the moderator requests audio
+- Allow the moderator to reclassify the report
+- Allow the service operator to choose from a list of harms or rules they want to receive reports about
+- Offer the end user a path to report an actor, behaviour, or content, e.g. “report this account” or “report this post”
+- Condense the labels by type and classification, and label each report. Use standard metadata to classify and present reported content.
+- Use standard language to describe the reporting context.
+- Consider a multi-step report submission process that allows fine-grained reporting
+
+</body>
+</html>
